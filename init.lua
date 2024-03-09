@@ -1,21 +1,32 @@
-require "core"
+local autocmd = vim.api.nvim_create_autocmd
 
-local custom_init_path = vim.api.nvim_get_runtime_file("lua/custom/init.lua", false)[1]
-
-if custom_init_path then
-  dofile(custom_init_path)
+if vim.fn.has('win32') == 1 then
+  vim.o.shell = 'powershell'
+else
+  vim.o.shell = 'pwsh'
 end
 
-require("core.utils").load_mappings()
+vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+vim.o.shellquote = ''
+vim.o.shellxquote = ''
+vim.o.shellslash = false
 
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+vim.opt.shiftwidth = 4
+vim.opt.relativenumber = true
+vim.opt.wrap = true
 
--- bootstrap lazy.nvim!
-if not vim.loop.fs_stat(lazypath) then
-  require("core.bootstrap").gen_chadrc_template()
-  require("core.bootstrap").lazy(lazypath)
-end
+autocmd("BufWritePre", {
+    pattern = "*.go",
+    callback = function()
+        vim.lsp.buf.format { async = false }
+    end,
+})
 
-dofile(vim.g.base46_cache .. "defaults")
-vim.opt.rtp:prepend(lazypath)
-require "plugins"
+
+-- Auto resize panes when resizing nvim window
+-- autocmd("VimResized", {
+--   pattern = "*",
+--   command = "tabdo wincmd =",
+-- })
