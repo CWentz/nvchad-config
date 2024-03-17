@@ -13,6 +13,10 @@ if e ~= nil then
 end
 
 local sources = {
+  -- web stuff
+  b.formatting.deno_fmt,
+  b.formatting.prettier,
+
   -- Lua
   b.formatting.stylua,
 
