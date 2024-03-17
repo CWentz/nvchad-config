@@ -19,7 +19,6 @@ M.treesitter = {
         "bash",
         "gowork",
         "yaml",
-        "help",
         "python",
         "c",
         "cpp",
