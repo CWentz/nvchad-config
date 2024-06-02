@@ -37,6 +37,26 @@ local plugins = {
         opts = overrides.nvimtree,
     },
 
+
+    {
+        "laytan/cloak.nvim",
+        lazy = false,
+        config = function()
+            require "custom.configs.cloak-conf"
+        end,
+    },
+
+
+    {
+        "Hoffs/omnisharp-extended-lsp.nvim",
+        lazy = true,
+        config = function()
+        end,
+    },
+    -- {
+    --     "github/copilot.vim",
+    --     lazy = false,
+    -- },
     -- {
     --     "nvim-treesitter/playground",
     --     opts = overrides.nvimtree.playground,
@@ -99,6 +119,11 @@ local plugins = {
         lazy = false,
 
     },
+
+    -- {
+    --     "tpope/vim-surround",
+    --     lazy = false,
+    -- },
 
     -- To make a plugin not be loaded
     -- {

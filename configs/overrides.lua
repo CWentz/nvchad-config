@@ -30,7 +30,7 @@ M.treesitter = {
     },
     indent = {
         enable = true,
-        -- disable = {
+        -- disable = {
         --   "python"
         -- },
     },
@@ -102,6 +102,7 @@ M.mason = {
 
         -- c# stuff
         "omnisharp",
+        "omnisharp_extended",
 
         -- shell stuff
         "shfmt",
@@ -122,6 +123,20 @@ M.nvimtree = {
             },
         },
     },
+    filters = {
+        dotfiles = true,
+        git_clean = false,
+        no_buffer = false,
+        custom = {
+            '^\\.git',
+            '^\\.idea',
+            '^\\node_modules',
+            '*.meta',
+            '*.dll*',
+            '*.cache',
+
+        }
+    }
 }
 
 return M

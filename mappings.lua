@@ -13,7 +13,7 @@ M.general = {
             "formatting",
         },
 
-        ["<leader>u"] = { vim.cmd.UndotreeToggle, "Toggle Undotree" }
+        ["<leader>u"] = { vim.cmd.UndotreeToggle, "Toggle Undotree" },
 
     },
     v = {
